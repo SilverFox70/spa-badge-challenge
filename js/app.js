@@ -40,7 +40,8 @@ var showThisPerson = function(thisPath){
   }).done(function(response){
     console.log("ajax response: " + response[0].id + " " + response[0].phrase);
     $('.people_list_container').hide();
-    $('show-user').show();
+    $('.show-user').show();
+    showPersonsSlogans(response);
   }).fail(function(response){
     console.log("Ajax fail on showThisPerson.");
   });

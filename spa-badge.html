@@ -8,7 +8,7 @@
   <title>SPABadge</title>
 </head>
 <body>
-  <div class="container">
+  <div class="container"> <!--top level container -->
     <div class="logo">
       <h1> SPA Badge </h1>
     </div>
@@ -29,8 +29,8 @@
     <div class="show-user">
       <!-- The #each helper iterates over an array of items. -->
       <script id="badge-list-template" type="text/x-handlebars-template">
-        {{#each badges}}
-          <h2>Walkers Badges</h2>
+        <h2>Walkers Badges</h2>
+          {{#each badges}}
             <div id={{id}} class="slogan">
               <div class="body">{{n}}) {{phrase}}</div>
               <div class="vote-on">
@@ -54,7 +54,7 @@
             <div class="points">
               (25 points)
             </div>
-        {{/each}}
+          {{/each}}
       </script> <!-- Close badge-list-template -->
 
       <div class="add-badge">
@@ -67,7 +67,7 @@
       </div> <!-- Close add badge -->
 
     </div> <!-- close show-user -->
-  </div>
+  </div> <!-- top level container -->
 </body>
 </html>
 
