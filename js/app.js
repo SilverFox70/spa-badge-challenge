@@ -1,3 +1,8 @@
+var currentPersonId = 0;
+
+function updateCurrentPerson(thisPath) {
+  currentPersonId = thisPath.match(/people\/(\d+)/)[1]
+}
 
 $(function () {
   console.log("JS is active");
@@ -18,17 +23,19 @@ var bindListeners = function(){
 var peopleListListener = function(){
   $('.people_list_container').on('click', 'a.person-button', function(e){
     e.preventDefault();
-    var this_path = $(this).attr('href');
-    console.log("person-button clicked. path : " + this_path);
-    showThisPerson(this_path);
+    var thisPath = $(this).attr('href');
+    updateCurrentPerson(thisPath);
+    console.log("New current person id is " + currentPersonId)
+    console.log("person-button clicked. path : " + thisPath);
+    showThisPerson(thisPath);
   });
 };
 
 // Individual AJAX calls
-var showThisPerson = function(this_path){
+var showThisPerson = function(thisPath){
   $.ajax({
     method: 'GET',
-    url: this_path,
+    url: thisPath,
     dataType: 'json'
   }).done(function(response){
     console.log("ajax response: " + response[0].id + " " + response[0].phrase);
