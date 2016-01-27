@@ -16,35 +16,58 @@
     <div class="people_list_container">
       <ul id="people_list">
         <!-- The #each helper iterates over an array of items. -->
-        <script id="example-template" type="text/x-handlebars-template">
-
-          <!-- people is looked up on the global context, the one we pass to the compiled template -->
-
+        <script id="people-list-template" type="text/x-handlebars-template">
           {{#each people}}
-
-            <!-- Here the context is each individual person. So we can access its properties directly: -->
-            <li id={{uid}}><a href={{path}}>{{firstName}} {{lastName}}</a></li>
-
+            <li id={{uid}}><a class="person-button" href={{path}}>{{firstName}} {{lastName}}</a></li>
           {{/each}}
-
         </script>
         <li><a href="sample-page.html">Sample Page</a></li>
-      </ul>
-    </div>
+      </ul> <!-- Close people-list -->
+    </div> <!-- Close people-list-container -->
+
+    <!-- Show user and badges portion of page -->
+    <div class="show-user">
+      <!-- The #each helper iterates over an array of items. -->
+      <script id="badge-list-template" type="text/x-handlebars-template">
+        {{#each badges}}
+          <h2>Walkers Badges</h2>
+            <div id={{id}} class="slogan">
+              <div class="body">{{n}}) {{phrase}}</div>
+              <div class="vote-on">
+              <form action="#">
+                <input type="hidden" name="badge_id" value={{id}}>
+                <input type="hidden" name="vote_type" value="up">
+                <button class="up" type="submit" name="submit">
+                  <img src="img/upvote.gif" alt="upvote_image" />
+                </button>
+              </form>
+            </div>
+            <div class="vote-on">
+              <form action="#">
+                <input type="hidden" name="badge_id" value={{id}}>
+                <input type="hidden" name="vote_type" value="down">
+                <button class="down" type="submit" name="submit">
+                  <img src="img/downvote.gif" alt="downvote_image" />
+                </button>
+              </form>
+            </div>
+            <div class="points">
+              (25 points)
+            </div>
+        {{/each}}
+      </script> <!-- Close badge-list-template -->
+
+      <div class="add-badge">
+        <h3> Add a Badge: </h3>
+        <form action="#">
+          <input type="hidden" name="user_id" value="5" />
+          <input type="text" name="content" />
+          <input type="image" src="img/add_button.png" alt="Add Slogan" />
+        </form>
+      </div> <!-- Close add badge -->
+
+    </div> <!-- close show-user -->
   </div>
 </body>
 </html>
 
-<!-- The #each helper iterates over an array of items. -->
-<script id="example-template" type="text/x-handlebars-template">
-
-  <!-- people is looked up on the global context, the one we pass to the compiled template -->
-
-  {{#each people}}
-
-    <!-- Here the context is each individual person. So we can access its properties directly: -->
-    <p>{{firstName}} {{lastName}}</p>
-
-  {{/each}}
-
-</script>
