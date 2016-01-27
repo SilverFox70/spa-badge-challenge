@@ -3,7 +3,7 @@
  */
 "use strict"
 
- var SweetSelector = {};
+var SweetSelector = {};
 
  SweetSelector.select = function (cssSelector){
   var firstCharacter = cssSelector.charAt(0)
