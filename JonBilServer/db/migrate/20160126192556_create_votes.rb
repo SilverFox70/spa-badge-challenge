@@ -1,4 +1,4 @@
-, class CreateVotes < ActiveRecord::Migration
+class CreateVotes < ActiveRecord::Migration
   def change
     create_table :votes do |t|
       t.references :person, index: true, foreign_key: true

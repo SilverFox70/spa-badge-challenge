@@ -1,10 +1,12 @@
 class BadgesController < ApplicationController
+  before_action :set_person, only: [:index, :show, :update, :destroy]
   before_action :set_badge, only: [:show, :update, :destroy]
-  before_action :set_person, only: [:show, :update, :destroy]
 
   # GET /badges
   # GET /badges.json
   def index
+    p "*" * 40
+    p "params here: #{params[:person_id]}"
     @badges = @person.prizes
     render json: @badges
   end
@@ -52,7 +54,7 @@ class BadgesController < ApplicationController
     end
 
     def set_person
-      @person = Person.find(params[:id])
+      @person = Person.find(params[:person_id])
     end
 
     def badge_params
