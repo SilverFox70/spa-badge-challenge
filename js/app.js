@@ -1,9 +1,15 @@
+// ---------------------------------------------------
+// Set a way to get the current person id in a
+// 'global' context
+// ---------------------------------------------------
 var currentPersonId = 0;
 
 function updateCurrentPerson(thisPath) {
   currentPersonId = thisPath.match(/people\/(\d+)/)[1]
 }
-
+// ---------------------------------------------------
+// Wait for doc ready, then GO!
+// ---------------------------------------------------
 $(function () {
   console.log("JS is active");
   $('.show-user').hide();
@@ -13,13 +19,17 @@ $(function () {
   indexPeopleShow();
 });
 
+// ---------------------------------------------------
 // Bind all the various listeners for the page
+// ---------------------------------------------------
 var bindListeners = function(){
   console.log("Listening for events.")
   peopleListListener();
 };
 
+// ---------------------------------------------------
 // Individual listener functions
+// ---------------------------------------------------
 var peopleListListener = function(){
   $('.people_list_container').on('click', 'a.person-button', function(e){
     e.preventDefault();
@@ -31,7 +41,9 @@ var peopleListListener = function(){
   });
 };
 
+// ---------------------------------------------------
 // Individual AJAX calls
+// ---------------------------------------------------
 var showThisPerson = function(thisPath){
   $.ajax({
     method: 'GET',
