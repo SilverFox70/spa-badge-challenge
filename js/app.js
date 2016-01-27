@@ -79,7 +79,8 @@ var showPersonsSlogans = function(badges){
   var theTemplate = Handlebars.compile(theTemplateScript);
   badges_array = [];
   for (var i = 0; i < badges.length; i++) {
-    badges_array[i] = {id: badges[i].id, phrase: badges[0].phrase, n: i+1}
+    badges_array[i] = {id: badges[i].id, phrase: badges[i].phrase, n: i+1}
+    console.log("badge " + badges[i].id + ": " + badges_array[i].id + " " + badges_array[i].phrase);
   };
 
   // This is the default context, which is passed to the template
