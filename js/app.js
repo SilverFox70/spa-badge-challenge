@@ -25,6 +25,7 @@ $(function () {
 var bindListeners = function(){
   console.log("Listening for events.")
   peopleListListener();
+  voteButtonListener();
 };
 
 // ---------------------------------------------------
@@ -38,6 +39,13 @@ var peopleListListener = function(){
     console.log("New current person id is " + currentPersonId)
     console.log("person-button clicked. path : " + thisPath);
     showThisPerson(thisPath);
+  });
+};
+
+var voteButtonListener = function(){
+  $('.container').on('submit', '.form-class', function(e){
+    e.preventDefault();
+    console.log("vote-up button clicked, got: badge# " + this.badge_id.value + " vote: " + this.vote_type.value);
   });
 };
 
