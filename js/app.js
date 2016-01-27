@@ -47,7 +47,10 @@ var showThisPerson = function(thisPath){
   });
 };
 
-// Handlebar template views
+// Handlebar template views/handlers are below here
+// ------------------------------------------------
+// Show the list of all people
+// ------------------------------------------------
 var indexPeopleShow = function(){
   // Grab the template script
   var theTemplateScript = $("#people-list-template").html();
@@ -71,6 +74,9 @@ var indexPeopleShow = function(){
   $("#people_list").append(theCompiledHtml);
 };
 
+// -------------------------------------------------------
+// Show a list of badges for the selected person
+// -------------------------------------------------------
 var showPersonsSlogans = function(badges){
   // Grab the template script
   var theTemplateScript = $("#badge-list-template").html();
@@ -79,7 +85,7 @@ var showPersonsSlogans = function(badges){
   var theTemplate = Handlebars.compile(theTemplateScript);
   badges_array = [];
   for (var i = 0; i < badges.length; i++) {
-    badges_array[i] = {id: badges[i].id, phrase: badges[0].phrase, n: i+1}
+    badges_array[i] = {id: badges[i].id, phrase: badges[i].phrase, n: i+1}
   };
 
   // This is the default context, which is passed to the template
@@ -89,7 +95,7 @@ var showPersonsSlogans = function(badges){
   var theCompiledHtml = theTemplate(context);
 
   // Add the compiled html to the page
-  $("h1").append(theCompiledHtml);
+  $(".logo").append(theCompiledHtml);
 };
 
 
