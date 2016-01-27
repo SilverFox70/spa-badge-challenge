@@ -32,29 +32,31 @@
       <script id="badge-list-template" type="text/x-handlebars-template">
         <h2>Walkers Badges</h2>
           {{#each badges}}
-            <div id={{id}} class="slogan">
-              <div class="body">{{n}}) {{phrase}}</div>
+            <div class="badge_wrapper">
+              <div id={{id}} class="slogan">
+                <div class="body">{{n}}) {{phrase}}</div>
+                <div class="vote-on">
+                <form action="#">
+                  <input type="hidden" name="badge_id" value={{id}}>
+                  <input type="hidden" name="vote_type" value="up">
+                  <button class="up" type="submit" name="submit">
+                    <img src="img/upvote.gif" alt="upvote_image" />
+                  </button>
+                </form>
+              </div>
               <div class="vote-on">
-              <form action="#">
-                <input type="hidden" name="badge_id" value={{id}}>
-                <input type="hidden" name="vote_type" value="up">
-                <button class="up" type="submit" name="submit">
-                  <img src="img/upvote.gif" alt="upvote_image" />
-                </button>
-              </form>
-            </div>
-            <div class="vote-on">
-              <form action="#">
-                <input type="hidden" name="badge_id" value={{id}}>
-                <input type="hidden" name="vote_type" value="down">
-                <button class="down" type="submit" name="submit">
-                  <img src="img/downvote.gif" alt="downvote_image" />
-                </button>
-              </form>
-            </div>
-            <div class="points">
-              (25 points)
-            </div>
+                <form action="#">
+                  <input type="hidden" name="badge_id" value={{id}}>
+                  <input type="hidden" name="vote_type" value="down">
+                  <button class="down" type="submit" name="submit">
+                    <img src="img/downvote.gif" alt="downvote_image" />
+                  </button>
+                </form>
+              </div>
+              <div class="points">
+                (25 points)
+              </div>
+            </div> <!-- close badge_wrapper -->
           {{/each}}
       </script> <!-- Close badge-list-template -->
 
