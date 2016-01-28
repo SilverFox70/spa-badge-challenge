@@ -46,6 +46,7 @@ var voteButtonListener = function(){
   $('.container').on('submit', '.form-class', function(e){
     e.preventDefault();
     console.log("vote-up button clicked, got: badge# " + this.badge_id.value + " vote: " + this.vote_type.value);
+    logVote(this);
   });
 };
 
@@ -67,6 +68,20 @@ var showThisPerson = function(thisPath){
   });
 };
 
+var logVote = function(theVote){
+  path = "http://localhost:4000/people/1/badges/" + theVote.badge_id.value;
+  console.log("path in logVote: " + path);
+  $.ajax({
+    method: 'PUT',
+    url: path,
+    data: {voteDir: 1},
+    dataType: 'json'
+  }).done(function(response){
+    console.log("ajax response in logVote: " + response);
+  });
+};
+
+// ------------------------------------------------
 // Handlebar template views/handlers are below here
 // ------------------------------------------------
 // Show the list of all people
@@ -105,7 +120,8 @@ var showPersonsSlogans = function(badges){
   var theTemplate = Handlebars.compile(theTemplateScript);
   badges_array = [];
   for (var i = 0; i < badges.length; i++) {
-    badges_array[i] = {id: badges[i].id, phrase: badges[i].phrase, n: i+1}
+    badges_array[i] = {id: badges[i].id, phrase: badges[i].phrase, n: i+1, numVotes: badges[i].vote_count};
+    console.log("votes: " + badges[i].vote_count);
   };
 
   // This is the default context, which is passed to the template
