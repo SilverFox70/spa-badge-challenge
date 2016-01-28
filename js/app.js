@@ -1,9 +1,15 @@
+// ---------------------------------------------------
+// Set a way to get the current person id in a
+// 'global' context
+// ---------------------------------------------------
 var currentPersonId = 0;
 
 function updateCurrentPerson(thisPath) {
   currentPersonId = thisPath.match(/people\/(\d+)/)[1]
 }
-
+// ---------------------------------------------------
+// Wait for doc ready, then GO!
+// ---------------------------------------------------
 $(function () {
   console.log("JS is active");
   $('.show-user').hide();
@@ -13,13 +19,18 @@ $(function () {
   indexPeopleShow();
 });
 
+// ---------------------------------------------------
 // Bind all the various listeners for the page
+// ---------------------------------------------------
 var bindListeners = function(){
   console.log("Listening for events.")
   peopleListListener();
+  voteButtonListener();
 };
 
+// ---------------------------------------------------
 // Individual listener functions
+// ---------------------------------------------------
 var peopleListListener = function(){
   $('.people_list_container').on('click', 'a.person-button', function(e){
     e.preventDefault();
@@ -31,7 +42,17 @@ var peopleListListener = function(){
   });
 };
 
+var voteButtonListener = function(){
+  $('.container').on('submit', '.form-class', function(e){
+    e.preventDefault();
+    console.log("vote-up button clicked, got: badge# " + this.badge_id.value + " vote: " + this.vote_type.value);
+    logVote(this);
+  });
+};
+
+// ---------------------------------------------------
 // Individual AJAX calls
+// ---------------------------------------------------
 var showThisPerson = function(thisPath){
   $.ajax({
     method: 'GET',
@@ -47,6 +68,20 @@ var showThisPerson = function(thisPath){
   });
 };
 
+var logVote = function(theVote){
+  path = "http://localhost:4000/people/1/badges/" + theVote.badge_id.value;
+  console.log("path in logVote: " + path);
+  $.ajax({
+    method: 'PUT',
+    url: path,
+    data: {voteDir: 1},
+    dataType: 'json'
+  }).done(function(response){
+    console.log("ajax response in logVote: " + response);
+  });
+};
+
+// ------------------------------------------------
 // Handlebar template views/handlers are below here
 // ------------------------------------------------
 // Show the list of all people
@@ -85,7 +120,8 @@ var showPersonsSlogans = function(badges){
   var theTemplate = Handlebars.compile(theTemplateScript);
   badges_array = [];
   for (var i = 0; i < badges.length; i++) {
-    badges_array[i] = {id: badges[i].id, phrase: badges[i].phrase, n: i+1}
+    badges_array[i] = {id: badges[i].id, phrase: badges[i].phrase, n: i+1, numVotes: badges[i].vote_count};
+    console.log("votes: " + badges[i].vote_count);
   };
 
   // This is the default context, which is passed to the template

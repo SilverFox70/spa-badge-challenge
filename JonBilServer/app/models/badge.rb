@@ -7,8 +7,9 @@ class Badge < ActiveRecord::Base
 
 include Helpers
 
-  def vote_count
-    self.votes.sum(vote_value)
+  def update_vote_count
+    self.vote_count = self.votes.sum(:vote_value)
+    self.save
   end
 
 end

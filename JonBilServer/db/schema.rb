@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20160126192556) do
   create_table "badges", force: :cascade do |t|
     t.string   "phrase"
     t.integer  "victim_id"
+    t.integer  "vote_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -3,6 +3,7 @@ class CreateBadges < ActiveRecord::Migration
     create_table :badges do |t|
       t.string :phrase
       t.integer :victim_id
+      t.integer :vote_count
 
       t.timestamps null: false
     end

@@ -36,7 +36,7 @@
               <div id={{id}} class="slogan">
                 <div class="body">{{n}}) {{phrase}}</div>
                 <div class="vote-on">
-                <form action="#">
+                <form class="form-class" >
                   <input type="hidden" name="badge_id" value={{id}}>
                   <input type="hidden" name="vote_type" value="up">
                   <button class="up" type="submit" name="submit">
@@ -45,7 +45,7 @@
                 </form>
               </div>
               <div class="vote-on">
-                <form action="#">
+                <form class="form-class">
                   <input type="hidden" name="badge_id" value={{id}}>
                   <input type="hidden" name="vote_type" value="down">
                   <button class="down" type="submit" name="submit">
@@ -54,7 +54,7 @@
                 </form>
               </div>
               <div class="points">
-                (25 points)
+                ({{numVotes}} points)
               </div>
             </div> <!-- close badge_wrapper -->
           {{/each}}
